@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: mini-emr-backend
+    runtime: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node server.js
+    envVars:
+      - key: PORT
+        value: 5001
+      - key: JWT_SECRET
+        value: puneeth
+      - key: MONGODB_URI
+        value: mongodb+srv://anantha:Puneeth1501@cluster0.qtcwnmz.mongodb.net/mini-emr?retryWrites=true&w=majority
+
+  - type: web
+    name: mini-emr-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
