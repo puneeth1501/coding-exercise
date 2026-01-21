@@ -327,7 +327,7 @@ function AdminDashboard() {
                     <td>{user._id}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
-                    <td>{formatDate(user.createdAt)}</td>
+                    <td>{formatDate(user.created_at)}</td>
                   </tr>
                 ))}
               </tbody>
