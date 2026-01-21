@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://mini-emr-backend-2zwz.onrender.com/api';
+const API_BASE_URL = 'http://localhost:5001/api';
 
 // Helper function to handle API requests
 const apiRequest = async (url, options = {}) => {

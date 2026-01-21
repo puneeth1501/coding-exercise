@@ -106,7 +106,7 @@ function PatientDetail() {
   const openAppointmentModal = (appointment = null) => {
     if (appointment) {
       setAppointmentForm({
-        id: appointment.id,
+        id: appointment._id,
         provider: appointment.provider,
         datetime: toInputDateTime(appointment.datetime),
         repeat: appointment.repeat || '',
@@ -133,7 +133,7 @@ function PatientDetail() {
 
     try {
       const data = {
-        user_id: parseInt(id),
+        user_id: id,
         provider: appointmentForm.provider,
         datetime: new Date(appointmentForm.datetime).toISOString(),
         repeat: appointmentForm.repeat || null,
@@ -175,7 +175,7 @@ function PatientDetail() {
   const openPrescriptionModal = (prescription = null) => {
     if (prescription) {
       setPrescriptionForm({
-        id: prescription.id,
+        id: prescription._id,
         medication: prescription.medication,
         dosage: prescription.dosage,
         quantity: prescription.quantity,
@@ -204,7 +204,7 @@ function PatientDetail() {
 
     try {
       const data = {
-        user_id: parseInt(id),
+        user_id: id,
         medication: prescriptionForm.medication,
         dosage: prescriptionForm.dosage,
         quantity: parseInt(prescriptionForm.quantity),
@@ -276,7 +276,7 @@ function PatientDetail() {
               <h2>{user.name}</h2>
               <p style={{ color: '#666', marginTop: '5px' }}>
                 Email: {user.email}<br />
-                Patient ID: {user.id}<br />
+                Patient ID: {user._id}<br />
                 Created: {formatDate(user.created_at)}
               </p>
             </div>
@@ -308,7 +308,7 @@ function PatientDetail() {
               </thead>
               <tbody>
                 {appointments.map((apt) => (
-                  <tr key={apt.id}>
+                  <tr key={apt._id}>
                     <td>{apt.provider}</td>
                     <td>{formatDateTime(apt.datetime)}</td>
                     <td>{apt.repeat || 'One-time'}</td>
@@ -322,7 +322,7 @@ function PatientDetail() {
                         Edit
                       </button>
                       <button
-                        onClick={() => handleDeleteAppointment(apt.id)}
+                        onClick={() => handleDeleteAppointment(apt._id)}
                         className="btn btn-danger"
                         style={{ padding: '5px 10px' }}
                       >
@@ -363,7 +363,7 @@ function PatientDetail() {
               </thead>
               <tbody>
                 {prescriptions.map((rx) => (
-                  <tr key={rx.id}>
+                  <tr key={rx._id}>
                     <td>{rx.medication}</td>
                     <td>{rx.dosage}</td>
                     <td>{rx.quantity}</td>
@@ -378,7 +378,7 @@ function PatientDetail() {
                         Edit
                       </button>
                       <button
-                        onClick={() => handleDeletePrescription(rx.id)}
+                        onClick={() => handleDeletePrescription(rx._id)}
                         className="btn btn-danger"
                         style={{ padding: '5px 10px' }}
                       >
@@ -534,7 +534,7 @@ function PatientDetail() {
                 >
                   <option value="">Select medication</option>
                   {medications.map((med) => (
-                    <option key={med.id} value={med.name}>
+                    <option key={med._id} value={med.name}>
                       {med.name}
                     </option>
                   ))}
@@ -550,7 +550,7 @@ function PatientDetail() {
                 >
                   <option value="">Select dosage</option>
                   {dosages.map((dose) => (
-                    <option key={dose.id} value={dose.value}>
+                    <option key={dose._id} value={dose.value}>
                       {dose.value}
                     </option>
                   ))}
